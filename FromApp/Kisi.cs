@@ -12,10 +12,19 @@ namespace FromApp
         public string Soyad { get; set; }
         public string TcKimlikNo { get; set; }
         public string Uzmanlik { get; set; }
+        public bool IsActive { get; set; }
+        public Cinsiyet Cinsiyet { get; set; }
 
         public override string ToString()
         {
             return $"{Ad} {Soyad}";
         }
+    }
+
+    public enum Cinsiyet
+    {
+        Kadın,
+        Erkek,
+        Diger
     }
 }
