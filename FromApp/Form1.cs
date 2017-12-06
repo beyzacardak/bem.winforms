@@ -18,6 +18,11 @@ namespace FromApp
         }
 
         private bool isUpdate;
+        
+        private int selectedRowIndex=-1;
+        
+
+        public object ImageList2 { get; private set; }
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
@@ -31,10 +36,17 @@ namespace FromApp
             if (!isUpdate)
             {
                 lstKisi.Items.Add(kisi);
+
+                //var ListItem = new ListViewItem(new[] { $"{ kisi.Ad }", $"{ kisi.Soyad}" });
+                //listView1.Items.Add(ListItem);
+
+                var ListItem = new ListViewItem(new[] { txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
+                listView1.Items.Add(ListItem);
             }
             else
             {
                 lstKisi.Items[lstKisi.SelectedIndex] = kisi;
+               
             }
 
             txtAd.Text = "";
@@ -61,5 +73,39 @@ namespace FromApp
 
             isUpdate = true;
         }
+
+        
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            var lv = sender as ListView;
+            if (lv is null)
+            {
+                return;
+            }
+
+            var selected = lv.SelectedItems[0];
+            
+
+            txtAd.Text = selected.SubItems[0].Text;
+            txtSoyad.Text = selected.SubItems[1].Text;
+            txtKimlikNo.Text = selected.SubItems[2].Text;
+            txtUzmanlik.Text = selected.SubItems[3].Text;
+            
+            pictureBox1.Image = ımageList2.Images[selected.ImageIndex];
+
+            isUpdate = true;
+            selectedRowIndex = lv.SelectedIndices[0];
+        }
+
+        private void yukle_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            Bitmap img = new Bitmap(openFileDialog1.FileName);
+            pictureBox1.Image=img;
+
+        }
+
+        
     }
 }
