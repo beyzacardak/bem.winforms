@@ -104,22 +104,42 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            richTextBox1.SelectionFont=  new Font("Microsoft San Serif", 12);
+            richTextBox1.SelectionFont=  new Font("Microsoft San Serif", 8);
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-
+            richTextBox1.SelectionFont = new Font("Microsoft San Serif", 10);
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-
+            richTextBox1.SelectionFont = new Font("Microsoft San Serif", 12);
+        }
+        
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            var a = float.Parse(toolStripTextBox1.Text);
+            Font f = new Font("Arial", a,FontStyle.Regular);
+            //richTextBox1.SelectionFont = new Font(toolStripTextBox1.Text);
         }
 
-        private void diğerToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void inceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
+            richTextBox1.SelectionFont = new Font("Arial", 11, FontStyle.Italic);
+        }
 
+        private void kalınToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            richTextBox1.SelectionFont = new Font("Arial", 11, FontStyle.Bold);
+        }
+
+        private void altıÇizgiliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            richTextBox1.SelectionFont = new Font("Arial", 11, FontStyle.Underline);
         }
     }
 }
