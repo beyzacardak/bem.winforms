@@ -23,6 +23,7 @@ namespace FromApp
         private bool isUpdate;
         private int selectedRowIndex = -1;
 
+
         private void btnEkle_Click(object sender, EventArgs e)
         {
             if (progressBar1.Value < 5)
@@ -128,6 +129,12 @@ namespace FromApp
 
             listView1.SmallImageList = imageList2;
             listView1.LargeImageList = imageList2;
+
+            comboBox1.Items.Add((View)0);
+            comboBox1.Items.Add((View)1);
+            comboBox1.Items.Add((View)2);
+            comboBox1.Items.Add((View)3);
+            comboBox1.Items.Add((View)4);
 
         }
 
@@ -259,6 +266,52 @@ namespace FromApp
                 string key = RandomKey();
                 dictionary.Add(key, key);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+
+            if(comboBox is null)
+            {
+                return;
+            }
+
+            //switch (comboBox.SelectedItem.ToString())
+            //{
+            //    case "Large Icon": listView1.View = View.LargeIcon;break;
+            //    case "Small Icon": listView1.View = View.SmallIcon;break;
+            //    case "Details": listView1.View = View.Details;break;
+            //    case "List": listView1.View = View.List;break;
+            //    case "Tiles": listView1.View = View.Tile;break;
+            //    default:
+            //        break;
+            //}
+
+            listView1.View = (View)comboBox.SelectedItem;
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image = null;
+            ProgresbarHesapla();
+        }
+
+
+
+        private void yeniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Yeni");
+        }
+
+        private void çıjToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Opened(object sender, EventArgs e)
+        {
+            toolStripMenuItem2.Enabled = !(pictureBox1.Image is null);
         }
     }
 }
