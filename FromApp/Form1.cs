@@ -20,6 +20,7 @@ namespace FromApp
 
         private bool isUpdate;
         private int selectedRowIndex = -1;
+        private int imagelistId = 0;
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
@@ -34,6 +35,7 @@ namespace FromApp
             imageList2.Images.Add(pictureBox1.Image);
 
             li.ImageIndex = imageList2.Images.Count - 1;
+            li.ImageKey = imagelistId.ToString();
 
 
             if (isUpdate)
@@ -262,6 +264,20 @@ namespace FromApp
         private void txtAd_Leave(object sender, EventArgs e)
         {
             ProgresbarHesapla();
+        }
+
+        private string RandomKey()
+        {
+            int key = 0;
+            Random rnd = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                Debug.WriteLine($"key: {rnd.Next()}");
+            }
+            
+            key = rnd.Next();
+            Debug.WriteLine($"Kel : {key}");
+            return key.ToString();
         }
     }
 }
