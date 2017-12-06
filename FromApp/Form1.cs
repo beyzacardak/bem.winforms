@@ -107,6 +107,9 @@ namespace FromApp
 
             isUpdate = false;
             selectedRowIndex = -1;
+
+            silToolStripMenuItem.Enabled = true;
+            güncelleToolStripMenuItem.Enabled = true;
         }
 
 
@@ -128,6 +131,19 @@ namespace FromApp
 
             listView1.SmallImageList = imageList2;
             listView1.LargeImageList = imageList2;
+
+            comboBox1.Items.Add(View.Details);
+            comboBox1.Items.Add(View.LargeIcon);
+            comboBox1.Items.Add(View.List);
+            comboBox1.Items.Add(View.SmallIcon);
+            comboBox1.Items.Add(View.Tile);
+
+            if (pictureBox1.Image is null)
+            {
+                güncelleToolStripMenuItem.Enabled = false;
+                silToolStripMenuItem.Enabled = false;
+            }
+
 
         }
 
@@ -259,6 +275,32 @@ namespace FromApp
                 string key = RandomKey();
                 dictionary.Add(key, key);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listView1.View = (View)comboBox1.SelectedItem;
+        }
+
+        private void silToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!(pictureBox1.Image is null))
+            {
+                progressBar1.Value--;
+            }
+            pictureBox1.Image = null;
+            
+        }
+
+        private void güncelleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
+            openFileDialog1.ShowDialog();
+            var img = new Bitmap(openFileDialog1.FileName);
+
+            pictureBox1.Image = img;
+            ProgresbarHesapla();
         }
     }
 }
