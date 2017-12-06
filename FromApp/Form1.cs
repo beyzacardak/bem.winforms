@@ -16,27 +16,24 @@ namespace FromApp
         public Form1()
         {
             InitializeComponent();
+
+            Random();
         }
 
         private bool isUpdate;
         private int selectedRowIndex = -1;
-        private int imagelistId = 0;
 
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            if(progressBar1.Value < 5)
+            if (progressBar1.Value < 5)
             {
                 MessageBox.Show("Bütün alanları doldurmalısınız.");
                 return;
             }
 
-            var li = new ListViewItem(new[] { "",txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
-
-            imageList2.Images.Add(pictureBox1.Image);
-
-            li.ImageIndex = imageList2.Images.Count - 1;
-            li.ImageKey = imagelistId.ToString();
-
+            var li = new ListViewItem(new[] { "deneme", txtAd.Text, txtSoyad.Text, txtKimlikNo.Text, txtUzmanlik.Text });
+            li.ImageKey = RandomKey();
+            imageList2.Images.Add(li.ImageKey, pictureBox1.Image);
 
             if (isUpdate)
             {
@@ -112,36 +109,6 @@ namespace FromApp
             selectedRowIndex = -1;
         }
 
-        private void lstKisi_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            //if (e.Index < 0) return;
-            ////if the item state is selected them change the back color 
-            //if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-            //    e = new DrawItemEventArgs(e.Graphics,
-            //                              e.Font,
-            //                              e.Bounds,
-            //                              e.Index,
-            //                              e.State ^ DrawItemState.Selected,
-            //                              e.ForeColor,
-            //                              Color.Yellow);//Choose the color
-
-            //// Draw the background of the ListBox control for each item.
-            //e.DrawBackground();
-            //// Draw the current item text
-
-            //var  box = (ListBox)sender;
-
-            //var selectedItem = box.SelectedItem as Kisi;
-
-            //var brush = (!(selectedItem is null) && selectedItem.IsActive) ? Brushes.Black : Brushes.Gray;
-
-            //e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
-            //// If the ListBox has focus, draw a focus rectangle around the selected item.
-            //e.DrawFocusRectangle();
-
-
-            //Debug.WriteLine(e.Index);
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -168,7 +135,7 @@ namespace FromApp
         {
             var kisi = ((ListBox)sender).SelectedItem as Kisi;
 
-            if(kisi is null)
+            if (kisi is null)
             {
                 return;
             }
@@ -181,7 +148,7 @@ namespace FromApp
             chkAktif.Checked = kisi.IsActive;
 
 
-            if(kisi.Cinsiyet == Cinsiyet.Kadın)
+            if (kisi.Cinsiyet == Cinsiyet.Kadın)
             {
                 rdbCinsiyetKadin.Checked = true;
             }
@@ -189,7 +156,7 @@ namespace FromApp
             {
                 rdbCinsiyetErkek.Checked = true;
             }
-            else if(kisi.Cinsiyet == Cinsiyet.Diger)
+            else if (kisi.Cinsiyet == Cinsiyet.Diger)
             {
                 rbDiger.Checked = true;
             }
@@ -214,7 +181,7 @@ namespace FromApp
             txtKimlikNo.Text = selectedItem.SubItems[3].Text;
             txtUzmanlik.Text = selectedItem.SubItems[4].Text;
 
-            pictureBox1.Image = imageList2.Images[selectedItem.ImageIndex];
+            pictureBox1.Image = imageList2.Images[selectedItem.ImageKey];
 
             isUpdate = true;
             selectedRowIndex = lv.SelectedIndices[0];
@@ -266,18 +233,32 @@ namespace FromApp
             ProgresbarHesapla();
         }
 
+
+        private Random rndGenerator = new Random();
         private string RandomKey()
         {
-            int key = 0;
-            Random rnd = new Random();
+            string key = "";
+
+            for (int i = 0; i < 3; i++)
+            {
+                key += ((char)rndGenerator.Next(65536)).ToString();
+            }
+
+            Debug.WriteLine($"Key: {key} ");
+            return key.ToString();
+
+        }
+
+
+        private void Random()
+        {
+
+            var dictionary = new Dictionary<string, string>();
             for (int i = 0; i < 100; i++)
             {
-                Debug.WriteLine($"key: {rnd.Next()}");
+                string key = RandomKey();
+                dictionary.Add(key, key);
             }
-            
-            key = rnd.Next();
-            Debug.WriteLine($"Kel : {key}");
-            return key.ToString();
         }
     }
 }
