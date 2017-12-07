@@ -104,41 +104,24 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            richTextBox1.SelectionFont=  new Font("Microsoft San Serif", 8);
+            richTextBox1.SelectionFont=  new Font(richTextBox1.Font.FontFamily, 8);
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-            richTextBox1.SelectionFont = new Font("Microsoft San Serif", 10);
+            richTextBox1.SelectionFont = new Font(richTextBox1.Font.FontFamily, 10);
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            richTextBox1.SelectionFont = new Font("Microsoft San Serif", 12);
+            richTextBox1.SelectionFont = new Font(richTextBox1.Font.FontFamily, 12);
         }
-
-        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        private void toolStripTextBox1_TextChanged_1(object sender, EventArgs e)
         {
             float boyut = float.Parse(toolStripTextBox1.Text);
-            Font f = new Font(richTextBox1.Font.FontFamily, boyut);
-            //richTextBox1.SelectionFont = new Font(toolStripTextBox1.Text);
+            richTextBox1.SelectionFont = new Font(richTextBox1.Font.FontFamily, boyut);
         }
 
-        private void italikToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (italikToolStripMenuItem.Checked)
-            {
-                italikToolStripMenuItem.Checked = false;
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
-            }
-            else
-            {
-                italikToolStripMenuItem.Checked = true;
-                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Italic);
-
-            }
-            
-        }
 
         private void kalınToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -153,7 +136,20 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
                 richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
             }
         }
+        private void italikToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (italikToolStripMenuItem.Checked)
+            {
+                italikToolStripMenuItem.Checked = false;
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
+            }
+            else
+            {
+                italikToolStripMenuItem.Checked = true;
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Italic);
 
+            }
+        }
         private void altıÇizgiliToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (altıÇizgiliToolStripMenuItem.Checked)
@@ -178,7 +174,7 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
               }
            else
               {
-                MessageBox.Show("Seçili alan yok...");
+                MessageBox.Show("Seçili alan yok");
               }
         }
 
@@ -190,7 +186,7 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
             }
             else
             {
-                MessageBox.Show("Seçili alan yok...");
+                MessageBox.Show("Seçili alan yok");
             }
         }
 
@@ -199,42 +195,27 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
             richTextBox1.Paste();
         }
 
-        
-         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-         {
-             if (richTextBox1.SelectionFont.Italic)
-             {
-                 italikToolStripMenuItem.Checked = true;
-             }
-              else
-            {
-                italikToolStripMenuItem.Checked = false;
- 
-             }
- 
-             if (richTextBox1.SelectionFont.Bold)
-             {
-                 kalınToolStripMenuItem.Checked = true;
-             }
-             else
-            {
-                 kalınToolStripMenuItem.Checked = false;
- 
-             }
- 
-             if (richTextBox1.SelectionFont.Underline)
-             {
-                altıÇizgiliToolStripMenuItem.Checked = true;
-             }
-             else
-             {
-                altıÇizgiliToolStripMenuItem.Checked = false;
- 
-             }
- 
- 
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionColor = Color.FromArgb(trackBar1.Value,trackBar2.Value,trackBar3.Value);
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionColor = Color.FromArgb(trackBar1.Value, trackBar2.Value, trackBar3.Value);
+        }
     }
 
 
-    }
+    
 }

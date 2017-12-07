@@ -61,8 +61,16 @@
             this.kaydetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuDosya.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -70,7 +78,7 @@
             this.richTextBox1.ContextMenuStrip = this.contextMenuStrip1;
             this.richTextBox1.Location = new System.Drawing.Point(12, 83);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(461, 402);
+            this.richTextBox1.Size = new System.Drawing.Size(295, 402);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -84,7 +92,8 @@
             this.kopyalaToolStripMenuItem,
             this.yapıştırToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 158);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(126, 136);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // renkToolStripMenuItem
             // 
@@ -163,6 +172,7 @@
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged_1);
             // 
             // görünümToolStripMenuItem
             // 
@@ -186,6 +196,7 @@
             this.italikToolStripMenuItem.Name = "italikToolStripMenuItem";
             this.italikToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.italikToolStripMenuItem.Text = "İtalik";
+            this.italikToolStripMenuItem.Click += new System.EventHandler(this.italikToolStripMenuItem_Click_1);
             // 
             // altıÇizgiliToolStripMenuItem
             // 
@@ -273,14 +284,14 @@
             this.kaydetToolStripMenuItem});
             this.menuDosya.Location = new System.Drawing.Point(0, 0);
             this.menuDosya.Name = "menuDosya";
-            this.menuDosya.Size = new System.Drawing.Size(485, 24);
+            this.menuDosya.Size = new System.Drawing.Size(504, 24);
             this.menuDosya.TabIndex = 6;
             this.menuDosya.Text = "Dosya";
             // 
             // menuItemYeni
             // 
             this.menuItemYeni.Name = "menuItemYeni";
-            this.menuItemYeni.Size = new System.Drawing.Size(42, 20);
+            this.menuItemYeni.Size = new System.Drawing.Size(41, 20);
             this.menuItemYeni.Text = "Yeni";
             this.menuItemYeni.Click += new System.EventHandler(this.menuItemYeni_Click);
             // 
@@ -302,11 +313,54 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // trackBar1
+            // 
+            this.trackBar1.BackColor = System.Drawing.Color.Red;
+            this.trackBar1.Location = new System.Drawing.Point(17, 37);
+            this.trackBar1.Maximum = 255;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.TabIndex = 7;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // trackBar2
+            // 
+            this.trackBar2.BackColor = System.Drawing.Color.SeaGreen;
+            this.trackBar2.Location = new System.Drawing.Point(17, 102);
+            this.trackBar2.Maximum = 255;
+            this.trackBar2.Name = "trackBar2";
+            this.trackBar2.Size = new System.Drawing.Size(104, 45);
+            this.trackBar2.TabIndex = 8;
+            this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            // 
+            // trackBar3
+            // 
+            this.trackBar3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.trackBar3.Location = new System.Drawing.Point(17, 169);
+            this.trackBar3.Maximum = 255;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.Size = new System.Drawing.Size(104, 45);
+            this.trackBar3.TabIndex = 9;
+            this.trackBar3.Scroll += new System.EventHandler(this.trackBar3_Scroll);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.trackBar3);
+            this.groupBox1.Controls.Add(this.trackBar1);
+            this.groupBox1.Controls.Add(this.trackBar2);
+            this.groupBox1.Location = new System.Drawing.Point(336, 83);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(137, 256);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Renk";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 497);
+            this.ClientSize = new System.Drawing.Size(504, 497);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnRenkDegistir);
             this.Controls.Add(this.btnSagaYasla);
             this.Controls.Add(this.btnOrtala);
@@ -321,6 +375,11 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuDosya.ResumeLayout(false);
             this.menuDosya.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -360,6 +419,10 @@
         private System.Windows.Forms.ToolStripMenuItem kopyalaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yapıştırToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
