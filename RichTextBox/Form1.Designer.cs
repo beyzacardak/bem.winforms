@@ -43,7 +43,7 @@
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.görünümToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kalınToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.inceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.italikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.altıÇizgiliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kopyalaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -163,13 +163,12 @@
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // görünümToolStripMenuItem
             // 
             this.görünümToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kalınToolStripMenuItem,
-            this.inceToolStripMenuItem,
+            this.italikToolStripMenuItem,
             this.altıÇizgiliToolStripMenuItem});
             this.görünümToolStripMenuItem.Name = "görünümToolStripMenuItem";
             this.görünümToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
@@ -177,26 +176,19 @@
             // 
             // kalınToolStripMenuItem
             // 
-            this.kalınToolStripMenuItem.Checked = true;
-            this.kalınToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.kalınToolStripMenuItem.Name = "kalınToolStripMenuItem";
             this.kalınToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kalınToolStripMenuItem.Text = "Kalın";
             this.kalınToolStripMenuItem.Click += new System.EventHandler(this.kalınToolStripMenuItem_Click);
             // 
-            // inceToolStripMenuItem
+            // italikToolStripMenuItem
             // 
-            this.inceToolStripMenuItem.Checked = true;
-            this.inceToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.inceToolStripMenuItem.Name = "inceToolStripMenuItem";
-            this.inceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.inceToolStripMenuItem.Text = "İtalik";
-            this.inceToolStripMenuItem.Click += new System.EventHandler(this.inceToolStripMenuItem_Click);
+            this.italikToolStripMenuItem.Name = "italikToolStripMenuItem";
+            this.italikToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.italikToolStripMenuItem.Text = "İtalik";
             // 
             // altıÇizgiliToolStripMenuItem
             // 
-            this.altıÇizgiliToolStripMenuItem.Checked = true;
-            this.altıÇizgiliToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.altıÇizgiliToolStripMenuItem.Name = "altıÇizgiliToolStripMenuItem";
             this.altıÇizgiliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.altıÇizgiliToolStripMenuItem.Text = "Altı Çizgili";
@@ -207,18 +199,21 @@
             this.kesToolStripMenuItem.Name = "kesToolStripMenuItem";
             this.kesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kesToolStripMenuItem.Text = "Kes";
+            this.kesToolStripMenuItem.Click += new System.EventHandler(this.kesToolStripMenuItem_Click);
             // 
             // kopyalaToolStripMenuItem
             // 
             this.kopyalaToolStripMenuItem.Name = "kopyalaToolStripMenuItem";
             this.kopyalaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kopyalaToolStripMenuItem.Text = "Kopyala";
+            this.kopyalaToolStripMenuItem.Click += new System.EventHandler(this.kopyalaToolStripMenuItem_Click);
             // 
             // yapıştırToolStripMenuItem
             // 
             this.yapıştırToolStripMenuItem.Name = "yapıştırToolStripMenuItem";
             this.yapıştırToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.yapıştırToolStripMenuItem.Text = "Yapıştır";
+            this.yapıştırToolStripMenuItem.Click += new System.EventHandler(this.yapıştırToolStripMenuItem_Click);
             // 
             // btnFontSec
             // 
@@ -359,7 +354,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem görünümToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kalınToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem inceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem italikToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem altıÇizgiliToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kopyalaToolStripMenuItem;
