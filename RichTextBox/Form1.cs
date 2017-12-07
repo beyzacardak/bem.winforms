@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -76,6 +77,99 @@ Etiam sed accumsan risus, vitae gravida ex. Donec ex risus, mollis quis pulvinar
             {
                 streamWriter.Write(richTextBox1.Text);
             }
+        }
+
+        private void kalınToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style ^ FontStyle.Bold);
+        }
+
+        private void cmenuStyle_Opened(object sender, EventArgs e)
+        {
+            kalınToolStripMenuItem.Checked = richTextBox1.SelectionFont.Bold;
+            italikToolStripMenuItem.Checked = richTextBox1.SelectionFont.Italic;
+            altçizgiliToolStripMenuItem.Checked = richTextBox1.SelectionFont.Underline;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, 8);
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, 10);
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, 12);
+        }
+
+        private void toolStripTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == 13)
+            {
+                richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, float.Parse(((ToolStripTextBox)sender).Text));
+            }
+        }
+
+        private void toolStripTextBox1_Leave(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, float.Parse(((ToolStripTextBox)sender).Text));
+        }
+
+        private void cmenuStyle_Closed(object sender, ToolStripDropDownClosedEventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(toolStripTextBox1.Text))
+            {
+                return;
+            }
+
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, float.Parse(toolStripTextBox1.Text));
+        }
+
+        private void italikToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style ^ FontStyle.Italic);
+        }
+
+        private void altçizgiliToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont, richTextBox1.SelectionFont.Style ^ FontStyle.Underline);
+        }
+
+        private void kesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Cut();
+        }
+
+        private void kopyalaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Copy();
+        }
+
+        private void yapıştırToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Paste();
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            richTextBox1.SelectionFont = new Font(richTextBox1.SelectionFont.FontFamily, (sender as TrackBar).Value);
+        }
+
+        private void RenkSec()
+        {
+            var color =Color.FromArgb(trackBar2.Value, trackBar3.Value, trackBar4.Value);
+
+            richTextBox1.SelectionColor = color;
+
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            RenkSec();
         }
     }
 }
