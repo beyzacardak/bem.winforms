@@ -43,5 +43,31 @@ namespace SinavApp
                 } while (!string.IsNullOrWhiteSpace(satir));
             }
         }
+
+        private void btnDevamEt_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtAdSoyad.Text) || string.IsNullOrWhiteSpace(lblSinavDosyaYolu.Text))
+            {
+                MessageBox.Show("Ad-Soad veya sınav dosya bilgileri boş olamaz");
+                return;
+            }
+
+
+
+            this.Hide();
+
+            frmSinavEkrani sinav = new frmSinavEkrani();
+            sinav.Show();
+
+
+
+        }
+
+        private void btnSinavSec_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            lblSinavDosyaYolu.Text = openFileDialog1.FileName;
+
+        }
     }
 }
