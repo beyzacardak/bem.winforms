@@ -15,6 +15,8 @@ namespace SinavApp
     {
         public string AdSoyad { get; set; }
         public string SinavDosyaYolu { get; set; }
+        public int zaman { get; set; }
+        public double sinir { get; set; }
 
         public frmSinavEkrani()
         {
@@ -30,7 +32,7 @@ namespace SinavApp
             lblAdSoyad.Text = adSoyad;
             SinavDosyaYolu = sinavDosyaYolu;
         }
-        int saat=24, dakika=60, saniye=60;
+        
 
 
         private void frmSinavEkrani_Load(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace SinavApp
             {
                 lblSinavAdi.Text = streamReader.ReadLine();
                 lblSinavAciklama.Text = streamReader.ReadLine();
+                zaman = int.Parse(streamReader.ReadLine());
+                sinir = zaman / 10;
             }
             timer1.Enabled = true;
             timer1.Interval = 1000;
@@ -49,19 +53,19 @@ namespace SinavApp
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            saniye--;
-            if (saniye==0)
+
+            this.lblKalanZaman.Text = string.Format("{0:00}:{1:00}:{2:00}", (zaman / 3600), (zaman / 60), (zaman % 60));
+
+            if (zaman<=sinir)
             {
-                saniye = 60;
-                dakika--;
+                lblKalanZaman.ForeColor = Color.Red;
             }
-            if (dakika==0)
+            zaman--;
+
+            if (zaman==0)
             {
-                dakika = 60;
-                saat--;
+                timer1.Stop();
             }
-            lblKalanZaman.Text = saat.ToString() + ":" + dakika.ToString() + ":" + saniye.ToString();
-            
         }
         
     }
