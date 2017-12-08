@@ -16,5 +16,12 @@ namespace SinavApp
         {
             InitializeComponent();
         }
+        public string adsoyad { get; set; }
+        public string sinavadi { get; set; }
+        private void frmSinavEkrani_Load(object sender, EventArgs e)
+        {
+            lblAdSoyad.Text = adsoyad;
+            //lblSinavAdi.Text = sinavadi;
+        }
     }
 }

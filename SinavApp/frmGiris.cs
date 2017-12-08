@@ -62,7 +62,14 @@ namespace SinavApp
             var frmSinavEkrani = new frmSinavEkrani();
             //this.Hide();
 
-            frmSinavEkrani.ShowDialog();
+            //frmSinavEkrani.ShowDialog();
+
+            frmSinavEkrani frm = new frmSinavEkrani();
+            frm.adsoyad = txtAdSoyad.Text;
+            //frm.sinavadi = openFileDialog1.FileName;
+
+
+            frm.ShowDialog();
         }
     }
 }
