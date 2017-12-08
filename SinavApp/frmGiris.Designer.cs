@@ -106,9 +106,9 @@
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtAdSoyad;
+        public System.Windows.Forms.TextBox txtAdSoyad;
         private System.Windows.Forms.Button btnSinavSec;
-        private System.Windows.Forms.Label lblSinavDosyaYolu;
+        public System.Windows.Forms.Label lblSinavDosyaYolu;
         private System.Windows.Forms.Button btnDevamEt;
     }
 }
