@@ -33,10 +33,10 @@
             this.lblSinavAciklama = new System.Windows.Forms.Label();
             this.prgCevapOrani = new System.Windows.Forms.ProgressBar();
             this.pnlSorular = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.lblKalanZaman = new System.Windows.Forms.Label();
             this.lblAdSoyad = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlSorular.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,6 +75,14 @@
             this.pnlSorular.Size = new System.Drawing.Size(561, 241);
             this.pnlSorular.TabIndex = 3;
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(555, 235);
+            this.panel1.TabIndex = 0;
+            // 
             // lblKalanZaman
             // 
             this.lblKalanZaman.AutoSize = true;
@@ -99,14 +107,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(555, 235);
-            this.panel1.TabIndex = 0;
             // 
             // frmSinavEkrani
             // 

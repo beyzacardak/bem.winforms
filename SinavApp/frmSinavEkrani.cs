@@ -62,38 +62,48 @@ namespace SinavApp
                 zaman = int.Parse(streamReader.ReadLine());
                 sinir = zaman / 10;
 
-                int position = 0;
-                int position2 = 0;
+                
+                
                 string satir = "";
-                do
+                int soruSayisi = 0;
+                int top = -350;
+                int left = 0;
+
+                while (!string.IsNullOrWhiteSpace((satir = streamReader.ReadLine())))
                 {
+                    soruSayisi++;
+                    var items = satir.Split('|');
 
-                    satir = streamReader.ReadLine();
+                    top += (soruSayisi % 2 == 1) ? 350 : 0;
+                    left = (soruSayisi % 2 == 1) ? 0 : 286;
 
-                    if (!string.IsNullOrWhiteSpace(satir))
+                    var groupBox = new GroupBox
                     {
+                        Location = new Point(left, top),
+                        Size = new Size(275, 300),
+                        Text = $"{soruSayisi}. Soru"
+                    };
 
-                    
-                    var label = new Label();
-                    var groupbox = new GroupBox();
-                    //label.Size = new Size(120, 20);
-                    label.AutoSize = true;
-                    groupbox.AutoSize = true;
+                    var lbl = new Label
+                    {
+                        Text = items[0],
+                        MaximumSize = new Size(260, 0),
+                        AutoSize = true,
+                        Location = new Point(15, 15)
+                    };
 
-                    label.Location = new Point(0,position);
-                    groupbox.Location = new Point(0, position2);
-                    position += 50;
-                    
-                    label.Text = satir.Substring(0,satir.IndexOf(@"|"));
+                    var rdb = new RadioButton
+                    {
+                       
+                        MaximumSize = new Size(260, 0),
+                        AutoSize = true,
+                        Location = new Point(15, 15)
+                    };
+                    groupBox.Controls.Add(lbl);
+                    groupBox.Controls.Add(rdb);
+                    pnlSorular.Controls.Add(groupBox);
 
-
-
-
-                    panel1.Controls.Add(label);
-                    panel1.Controls.Add(groupbox);
-                    }
-
-                } while (!string.IsNullOrWhiteSpace(satir));
+                };
             }
             timer1.Start();
             timer1.Interval = 1000;
