@@ -36,6 +36,8 @@
             this.lblKalanZaman = new System.Windows.Forms.Label();
             this.lblAdSoyad = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlSorular.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSinavAdi
@@ -67,6 +69,7 @@
             // 
             // pnlSorular
             // 
+            this.pnlSorular.Controls.Add(this.panel1);
             this.pnlSorular.Location = new System.Drawing.Point(12, 204);
             this.pnlSorular.Name = "pnlSorular";
             this.pnlSorular.Size = new System.Drawing.Size(561, 241);
@@ -79,9 +82,9 @@
             this.lblKalanZaman.ForeColor = System.Drawing.Color.Green;
             this.lblKalanZaman.Location = new System.Drawing.Point(486, 13);
             this.lblKalanZaman.Name = "lblKalanZaman";
-            this.lblKalanZaman.Size = new System.Drawing.Size(87, 31);
+            this.lblKalanZaman.Size = new System.Drawing.Size(128, 31);
             this.lblKalanZaman.TabIndex = 4;
-            this.lblKalanZaman.Text = "00:00";
+            this.lblKalanZaman.Text = "00:00:00";
             // 
             // lblAdSoyad
             // 
@@ -97,11 +100,19 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(555, 235);
+            this.panel1.TabIndex = 0;
+            // 
             // frmSinavEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 457);
+            this.ClientSize = new System.Drawing.Size(621, 457);
             this.Controls.Add(this.lblAdSoyad);
             this.Controls.Add(this.lblKalanZaman);
             this.Controls.Add(this.pnlSorular);
@@ -110,7 +121,8 @@
             this.Controls.Add(this.lblSinavAdi);
             this.Name = "frmSinavEkrani";
             this.Text = "frmSinavEkrani";
-            
+            this.Load += new System.EventHandler(this.frmSinavEkrani_Load_1);
+            this.pnlSorular.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +137,6 @@
         private System.Windows.Forms.Label lblKalanZaman;
         public System.Windows.Forms.Label lblAdSoyad;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
