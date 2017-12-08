@@ -110,7 +110,7 @@
             this.Controls.Add(this.lblSinavAdi);
             this.Name = "frmSinavEkrani";
             this.Text = "frmSinavEkrani";
-            this.Load += new System.EventHandler(this.frmSinavEkrani_Load);
+            
             this.ResumeLayout(false);
             this.PerformLayout();
 
