@@ -80,7 +80,7 @@ namespace SinavApp
                         {
                             Text = items[i],
                             Location = new Point(20, radioTop),
-                            Enabled = false,
+                            //Enabled = false,
                             AutoSize = true,
                             MaximumSize = new Size(200,0)
                         };
@@ -102,23 +102,22 @@ namespace SinavApp
                 
                 //timer1.Interval = 1;
             }
-            //int dogru = 0;
-            //int yanlis = 0;
-            
-           
+          
         }
        
         private void basla_Click(object sender, EventArgs e)
         {
             //btnaktifmi = true;
             timer1.Start();
-            radioetkin(true);
-
-
             
-            
-            
+            //basla.Enabled = false;
+ 
         }
+
+       
+
+
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (SinavSüresi.TotalSeconds == 0)
@@ -135,59 +134,37 @@ namespace SinavApp
             SinavSüresi = TimeSpan.FromSeconds(SinavSüresi.TotalSeconds - 1);
         }
 
-        private List<Control> radioetkin(bool EtkinMi)
-         {
-             List<Control> radiolarcontrol = new List<Control>();
-            radiolarcontrol.Clear();
-             foreach (Control control in this.pnlSorular.Controls)
-             {
-                 if (control is GroupBox)
-                 {
-                    radiolarcontrol.Add(control);
-                     foreach (Control control2 in control.Controls)
-                     {
-                         
-                         if (control is RadioButton)
-                         {
-                             RadioButton radio = control as RadioButton;
-  
-                             radio.Enabled = EtkinMi;
-                         }
-                     }
-                 }
-             }
-             return radiolarcontrol;
-          }
-
+      
         private void bitir_Click(object sender, EventArgs e)
         {
-            cevaplarKayıt();
+            cevaplarKayit();
             timer1.Stop();
 
 
         }
       
 
-        private void cevaplarKayıt()
+        private void cevaplarKayit()
          {
-             int CevaplananSecenek = 0;
-             using (var streamWriter = new StreamWriter(@"C:\Users\xx\Source\Repos\bem.winforms2\SinavApp\Cevaplar\" + lblSinavAdi.Text + "-" + lblSinavAdi.Text + "-001.txt", true))
+             int cevaplananSayisi = 0;
+
+             using (var streamWriter = new StreamWriter(@"C:\Users\BEM\Source\Repos\bem.winforms\SinavApp\Cevaplar\" + lblSinavAdi.Text + "-" + lblAdSoyad.Text + "-001.txt", true))
              {
                  streamWriter.WriteLine($"{lblSinavAdi.Text}");
                  List<Control> Radiolar = new List<Control>();
-                Radiolar = radioetkin(false);
-                 foreach (var groupBox in Radiolar)
+                
+                 foreach (var radio in Radiolar)
                  {
-                     foreach (var control in groupBox.Controls)
+                     foreach (var control in radio.Controls)
                      {
                          if (control is RadioButton)
                        {
-                             CevaplananSecenek++;
-                             RadioButton radio = control as RadioButton;
-                             if (radio.Checked)
+                            cevaplananSayisi++;
+                             RadioButton radios = control as RadioButton;
+                             if (radios.Checked)
                              {
-                                 streamWriter.WriteLine($"{groupBox.Name} {CevaplananSecenek}");
-                                 CevaplananSecenek = 0;
+                                 streamWriter.WriteLine($"{radio.Name} {cevaplananSayisi}");
+                                cevaplananSayisi = 0;
                                  break;
                              }
                          }
