@@ -91,16 +91,22 @@ namespace SinavApp
                         AutoSize = true,
                         Location = new Point(15, 15)
                     };
-
-                    var rdb = new RadioButton
+                    int radiotop = lbl.Location.Y + lbl.PreferredHeight+15;
+                    for (int i = 0; i < items.Length; i++)
                     {
-                       
-                        MaximumSize = new Size(260, 0),
-                        AutoSize = true,
-                        Location = new Point(15, 15)
-                    };
-                    groupBox.Controls.Add(lbl);
+                        var rdb = new RadioButton
+                        {
+                            Text = items[i],
+                           
+                            
+                            Location = new Point(20, radiotop)
+                        };
                     groupBox.Controls.Add(rdb);
+                        radiotop += 30;
+                }
+                  
+                    groupBox.Controls.Add(lbl);
+                    
                     pnlSorular.Controls.Add(groupBox);
 
                 };
