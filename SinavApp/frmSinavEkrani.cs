@@ -15,8 +15,9 @@ namespace SinavApp
     {
         public string AdSoyad { get; set; }
         public string SinavDosyaYolu { get; set; }
-        public int zaman { get; set; }
-        public double sinir { get; set; }
+        public TimeSpan SinavSüresi { get; private set; }
+        public double SinavSüresiYüzdeOn { get; private set; }
+        //bool btnaktifmi=false;
 
         public frmSinavEkrani()
         {
@@ -26,53 +27,32 @@ namespace SinavApp
             //this.lblAdSoyad.Text = frmGiris.txtAdSoyad.Text;
         }
 
-        public frmSinavEkrani(string adSoyad, string sinavDosyaYolu) :this()
+        public frmSinavEkrani(string adSoyad, string sinavDosyaYolu) : this()
         {
             AdSoyad = adSoyad;
             lblAdSoyad.Text = adSoyad;
             SinavDosyaYolu = sinavDosyaYolu;
         }
-        
-        
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-
-            if (zaman == 0)
-            {
-                timer1.Stop();
-            }
-            this.lblKalanZaman.Text = string.Format("{0:00}:{1:00}:{2:00}", (zaman / 3600), (zaman / 60), (zaman % 60));
-
-            if (zaman<=sinir)
-            {
-                lblKalanZaman.ForeColor = Color.Red;
-            }
-            zaman--;
-
-            
-        }
-
-        private void frmSinavEkrani_Load_1(object sender, EventArgs e)
+        public void frmSinavEkrani_Load(object sender, EventArgs e)
         {
             using (var streamReader = new StreamReader(SinavDosyaYolu))
             {
                 lblSinavAdi.Text = streamReader.ReadLine();
                 lblSinavAciklama.Text = streamReader.ReadLine();
-                zaman = int.Parse(streamReader.ReadLine());
-                sinir = zaman / 10;
+                SinavSüresi = TimeSpan.FromSeconds(int.Parse(streamReader.ReadLine()));
+                SinavSüresiYüzdeOn = SinavSüresi.TotalSeconds * 0.1;
 
-                
-                
-                string satir = "";
+                string line = "";
+
                 int soruSayisi = 0;
                 int top = -350;
                 int left = 0;
 
-                while (!string.IsNullOrWhiteSpace((satir = streamReader.ReadLine())))
+                while (!string.IsNullOrWhiteSpace((line = streamReader.ReadLine())))
                 {
                     soruSayisi++;
-                    var items = satir.Split('|');
+                    var items = line.Split('|');
 
                     top += (soruSayisi % 2 == 1) ? 350 : 0;
                     left = (soruSayisi % 2 == 1) ? 0 : 286;
@@ -91,28 +71,131 @@ namespace SinavApp
                         AutoSize = true,
                         Location = new Point(15, 15)
                     };
-                    int radiotop = lbl.Location.Y + lbl.PreferredHeight+15;
-                    for (int i = 0; i < items.Length; i++)
+
+                    int radioTop = lbl.Location.Y+ lbl.PreferredHeight +15;
+
+                    for (int i = 1; i < items.Length-1; i++)
                     {
-                        var rdb = new RadioButton
+                        var radio = new RadioButton
                         {
                             Text = items[i],
-                           
-                            
-                            Location = new Point(20, radiotop)
+                            Location = new Point(20, radioTop),
+                            Enabled = false,
+                            AutoSize = true,
+                            MaximumSize = new Size(200,0)
                         };
-                    groupBox.Controls.Add(rdb);
-                        radiotop += 30;
-                }
-                  
+                        
+
+                        groupBox.Controls.Add(radio);
+
+                        radioTop += 30;
+                    }
+
                     groupBox.Controls.Add(lbl);
-                    
+
                     pnlSorular.Controls.Add(groupBox);
 
+                    
                 };
+
+
+                
+                //timer1.Interval = 1;
             }
-            timer1.Start();
-            timer1.Interval = 1000;
+            //int dogru = 0;
+            //int yanlis = 0;
+            
+           
         }
+       
+        private void basla_Click(object sender, EventArgs e)
+        {
+            //btnaktifmi = true;
+            timer1.Start();
+            radioetkin(true);
+
+
+            
+            
+            
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (SinavSüresi.TotalSeconds == 0)
+            {
+                timer1.Stop();
+                basla.Enabled = false; 
+            }
+            this.lblKalanZaman.Text = SinavSüresi.ToString(@"hh\:mm\:ss");
+
+            if (SinavSüresi.TotalSeconds <= SinavSüresiYüzdeOn)
+            {
+                lblKalanZaman.ForeColor = Color.Red;
+            }
+            SinavSüresi = TimeSpan.FromSeconds(SinavSüresi.TotalSeconds - 1);
+        }
+
+        private List<Control> radioetkin(bool EtkinMi)
+         {
+             List<Control> radiolarcontrol = new List<Control>();
+            radiolarcontrol.Clear();
+             foreach (Control control in this.pnlSorular.Controls)
+             {
+                 if (control is GroupBox)
+                 {
+                    radiolarcontrol.Add(control);
+                     foreach (Control control2 in control.Controls)
+                     {
+                         
+                         if (control is RadioButton)
+                         {
+                             RadioButton radio = control as RadioButton;
+  
+                             radio.Enabled = EtkinMi;
+                         }
+                     }
+                 }
+             }
+             return radiolarcontrol;
+          }
+
+        private void bitir_Click(object sender, EventArgs e)
+        {
+            cevaplarKayıt();
+            timer1.Stop();
+
+
+        }
+      
+
+        private void cevaplarKayıt()
+         {
+             int CevaplananSecenek = 0;
+             using (var streamWriter = new StreamWriter(@"C:\Users\xx\Source\Repos\bem.winforms2\SinavApp\Cevaplar\" + lblSinavAdi.Text + "-" + lblSinavAdi.Text + "-001.txt", true))
+             {
+                 streamWriter.WriteLine($"{lblSinavAdi.Text}");
+                 List<Control> Radiolar = new List<Control>();
+                Radiolar = radioetkin(false);
+                 foreach (var groupBox in Radiolar)
+                 {
+                     foreach (var control in groupBox.Controls)
+                     {
+                         if (control is RadioButton)
+                       {
+                             CevaplananSecenek++;
+                             RadioButton radio = control as RadioButton;
+                             if (radio.Checked)
+                             {
+                                 streamWriter.WriteLine($"{groupBox.Name} {CevaplananSecenek}");
+                                 CevaplananSecenek = 0;
+                                 break;
+                             }
+                         }
+                     }
+                 }
+            }
+         }
+ 
+
     }
 }

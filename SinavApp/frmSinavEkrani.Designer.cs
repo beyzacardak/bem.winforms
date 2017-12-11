@@ -32,12 +32,12 @@
             this.lblSinavAdi = new System.Windows.Forms.Label();
             this.lblSinavAciklama = new System.Windows.Forms.Label();
             this.prgCevapOrani = new System.Windows.Forms.ProgressBar();
-            this.pnlSorular = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlSorular = new SinavApp.CustomPanel();
             this.lblKalanZaman = new System.Windows.Forms.Label();
             this.lblAdSoyad = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pnlSorular.SuspendLayout();
+            this.basla = new System.Windows.Forms.Button();
+            this.bitir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblSinavAdi
@@ -54,7 +54,7 @@
             // 
             this.lblSinavAciklama.AutoSize = true;
             this.lblSinavAciklama.Location = new System.Drawing.Point(15, 61);
-            this.lblSinavAciklama.MaximumSize = new System.Drawing.Size(300, 0);
+            this.lblSinavAciklama.MaximumSize = new System.Drawing.Size(350, 0);
             this.lblSinavAciklama.Name = "lblSinavAciklama";
             this.lblSinavAciklama.Size = new System.Drawing.Size(50, 13);
             this.lblSinavAciklama.TabIndex = 1;
@@ -64,24 +64,16 @@
             // 
             this.prgCevapOrani.Location = new System.Drawing.Point(12, 175);
             this.prgCevapOrani.Name = "prgCevapOrani";
-            this.prgCevapOrani.Size = new System.Drawing.Size(561, 23);
+            this.prgCevapOrani.Size = new System.Drawing.Size(595, 23);
             this.prgCevapOrani.TabIndex = 2;
             // 
             // pnlSorular
             // 
-            this.pnlSorular.Controls.Add(this.panel1);
+            this.pnlSorular.AutoScroll = true;
             this.pnlSorular.Location = new System.Drawing.Point(12, 204);
             this.pnlSorular.Name = "pnlSorular";
-            this.pnlSorular.Size = new System.Drawing.Size(561, 241);
+            this.pnlSorular.Size = new System.Drawing.Size(595, 241);
             this.pnlSorular.TabIndex = 3;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(555, 235);
-            this.panel1.TabIndex = 0;
             // 
             // lblKalanZaman
             // 
@@ -90,9 +82,9 @@
             this.lblKalanZaman.ForeColor = System.Drawing.Color.Green;
             this.lblKalanZaman.Location = new System.Drawing.Point(486, 13);
             this.lblKalanZaman.Name = "lblKalanZaman";
-            this.lblKalanZaman.Size = new System.Drawing.Size(128, 31);
+            this.lblKalanZaman.Size = new System.Drawing.Size(87, 31);
             this.lblKalanZaman.TabIndex = 4;
-            this.lblKalanZaman.Text = "00:00:00";
+            this.lblKalanZaman.Text = "00:00";
             // 
             // lblAdSoyad
             // 
@@ -108,11 +100,33 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // basla
+            // 
+            this.basla.Location = new System.Drawing.Point(498, 127);
+            this.basla.Name = "basla";
+            this.basla.Size = new System.Drawing.Size(75, 23);
+            this.basla.TabIndex = 6;
+            this.basla.Text = "BAŞLA";
+            this.basla.UseVisualStyleBackColor = true;
+            this.basla.Click += new System.EventHandler(this.basla_Click);
+            // 
+            // bitir
+            // 
+            this.bitir.Location = new System.Drawing.Point(602, 127);
+            this.bitir.Name = "bitir";
+            this.bitir.Size = new System.Drawing.Size(75, 23);
+            this.bitir.TabIndex = 7;
+            this.bitir.Text = "BİTİR";
+            this.bitir.UseVisualStyleBackColor = true;
+            this.bitir.Click += new System.EventHandler(this.bitir_Click);
+            // 
             // frmSinavEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(621, 457);
+            this.ClientSize = new System.Drawing.Size(689, 457);
+            this.Controls.Add(this.bitir);
+            this.Controls.Add(this.basla);
             this.Controls.Add(this.lblAdSoyad);
             this.Controls.Add(this.lblKalanZaman);
             this.Controls.Add(this.pnlSorular);
@@ -121,8 +135,7 @@
             this.Controls.Add(this.lblSinavAdi);
             this.Name = "frmSinavEkrani";
             this.Text = "frmSinavEkrani";
-            this.Load += new System.EventHandler(this.frmSinavEkrani_Load_1);
-            this.pnlSorular.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.frmSinavEkrani_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,10 +146,11 @@
         private System.Windows.Forms.Label lblSinavAdi;
         private System.Windows.Forms.Label lblSinavAciklama;
         private System.Windows.Forms.ProgressBar prgCevapOrani;
-        private System.Windows.Forms.Panel pnlSorular;
+        private CustomPanel pnlSorular;
         private System.Windows.Forms.Label lblKalanZaman;
         public System.Windows.Forms.Label lblAdSoyad;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button basla;
+        private System.Windows.Forms.Button bitir;
     }
 }
