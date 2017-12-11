@@ -65,5 +65,7 @@ namespace SinavApp
 
             frmSinavEkrani.ShowDialog();
         }
+
+       
     }
 }

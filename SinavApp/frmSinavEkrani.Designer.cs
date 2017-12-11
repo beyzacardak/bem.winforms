@@ -36,6 +36,8 @@
             this.lblKalanZaman = new System.Windows.Forms.Label();
             this.lblAdSoyad = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.basla = new System.Windows.Forms.Button();
+            this.bitir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblSinavAdi
@@ -98,11 +100,33 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // basla
+            // 
+            this.basla.Location = new System.Drawing.Point(498, 127);
+            this.basla.Name = "basla";
+            this.basla.Size = new System.Drawing.Size(75, 23);
+            this.basla.TabIndex = 6;
+            this.basla.Text = "BAŞLA";
+            this.basla.UseVisualStyleBackColor = true;
+            this.basla.Click += new System.EventHandler(this.basla_Click);
+            // 
+            // bitir
+            // 
+            this.bitir.Location = new System.Drawing.Point(602, 127);
+            this.bitir.Name = "bitir";
+            this.bitir.Size = new System.Drawing.Size(75, 23);
+            this.bitir.TabIndex = 7;
+            this.bitir.Text = "BİTİR";
+            this.bitir.UseVisualStyleBackColor = true;
+            this.bitir.Click += new System.EventHandler(this.bitir_Click);
+            // 
             // frmSinavEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 457);
+            this.Controls.Add(this.bitir);
+            this.Controls.Add(this.basla);
             this.Controls.Add(this.lblAdSoyad);
             this.Controls.Add(this.lblKalanZaman);
             this.Controls.Add(this.pnlSorular);
@@ -126,6 +150,7 @@
         private System.Windows.Forms.Label lblKalanZaman;
         public System.Windows.Forms.Label lblAdSoyad;
         private System.Windows.Forms.Timer timer1;
-
+        private System.Windows.Forms.Button basla;
+        private System.Windows.Forms.Button bitir;
     }
 }
